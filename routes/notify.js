@@ -10,6 +10,7 @@ console.log("inside  notify application 2");
 router.post('/', function(req, res, next) {
     
     //res.send(req.body);
+
     var fs = require('fs');
     var data = JSON.stringify(req.body);
     console.log('Got body:', data);
@@ -20,6 +21,9 @@ router.post('/', function(req, res, next) {
     res.sendStatus(200)
   //res.render('index', { title: 'Express' });
 });
-
+router.get('/', function(req, res, next) {
+    
+   console.log("get method");
+});
 
 module.exports = router;
