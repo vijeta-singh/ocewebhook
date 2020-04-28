@@ -22,7 +22,8 @@ router.post('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
 });
 router.get('/', function(req, res, next) {
-    
+    res.writeHead(200);
+    res.end("hello world\n"); 
    console.log("get method");
 });
 
