@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
+console.log("inside  notify application");
 const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(bodyParser.raw());
 /* GET home page. */
-
+console.log("inside  notify application 2");
 router.post('/', function(req, res, next) {
     
     //res.send(req.body);
