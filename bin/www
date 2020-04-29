@@ -7,17 +7,17 @@
 var app = require('../app');
 var debug = require('debug')('ocewebhook:server');
 var http = require('https');
-const fs = require('fs');
+// const fs = require('fs');
 
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
+// const options = {
+//   key: fs.readFileSync('key.pem'),
+//   cert: fs.readFileSync('cert.pem')
+// };
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3000' || '443');
 app.set('port', port);
 
 /**
