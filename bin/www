@@ -6,25 +6,23 @@
 
 var app = require('../app');
 var debug = require('debug')('ocewebhook:server');
-var http = require('https');
-const fs = require('fs');
+var http = require('http');
+//var http = require('https');
 
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
+
+
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT ||  '443');
+var port = normalizePort(process.env.PORT ||  '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(options,app);
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
