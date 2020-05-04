@@ -22,6 +22,12 @@ router.post('/', (req, res) => {
     //res.sendStatus(200)
 });
 
+router.get('/', (req, res) => {
+
+    //downloadContent(res)
+    res.sendStatus(200)
+});
+
 async function downloadContent(res) {
 
     var imageApiUrl = ApiBaseUrl + 'assets/' + ContentId + '/native';
