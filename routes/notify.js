@@ -1,3 +1,4 @@
+console.log("notify")
 var express = require('express');
 //var Blob = require('blob');
 const Blob = require('node-fetch');
