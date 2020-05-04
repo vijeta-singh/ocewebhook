@@ -18,7 +18,7 @@ var fileName="";
 /* GET home page. */
 
 router.post('/', (req, res) => {
-
+    console.log('before download content')
     downloadContent(res)
     //res.sendStatus(200)
 });
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 });
 
 async function downloadContent(res) {
-
+    console.log('inside download content')
     var imageApiUrl = ApiBaseUrl + 'assets/' + ContentId + '/native';
     var header = {
         headers: {
