@@ -14,11 +14,12 @@ const token = 'eyJ4NXQjUzI1NiI6IlVUdWFCZmRaVmppVHNFNDFubkJuN0YwdVZyWVV2Q3NPbjJCd
 const Fs = require('fs')
 var ContentId = 'CONT75630312A09042808A1A6C5EE1C41780';
 var fileName="";
+const repositoryId = 'B0B79C1208024A889D7A98969721A0AD';
 
 /* GET home page. */
 
 router.post('/', (req, res) => {
-    if(req.body.event.name === 'DIGITALASSET_CREATED') {
+    if(req.body.event.name === 'DIGITALASSET_CREATED' && repositoryId === req.body.entity.repositoryId) {
         ContentId = req.body.entity.id;
         downloadContent(res)
     } else {
@@ -80,42 +81,33 @@ async function downloadContent(res) {
 }
 async function quickstart(res, fileName) {
     console.log("calling google api")
-    const description = 'WELCOME TO\n' +
-        'WORLD\n' +
-        'CONGRESS\n' +
-        'BOSTON\n' +
-        'July 28–31, 2019\n' +
-        'NCMA\n' +
-        'NATIONAL CONTRACT MANAGEMENT ASSOCIATION\n' +
-        'CONNECTING TO\n' +
-        "CREATE WHAT'S NEXT\n" +
-        'MAYOR MARTIN J. WALSH\n'
-    // Imports the Google Cloud client library
-    // const vision = require('@google-cloud/vision');
+    // const description = 'WELCOME TO\n' +
+    //     'WORLD\n' +
+    //     'CONGRESS\n' +
+    //     'BOSTON\n' +
+    //     'July 28–31, 2019\n' +
+    //     'NCMA\n' +
+    //     'NATIONAL CONTRACT MANAGEMENT ASSOCIATION\n' +
+    //     'CONNECTING TO\n' +
+    //     "CREATE WHAT'S NEXT\n" +
+    //     'MAYOR MARTIN J. WALSH\n'
+    //Imports the Google Cloud client library
+    const vision = require('@google-cloud/vision');
 
-    // // Creates a client
-    // const client = new vision.ImageAnnotatorClient();
+    // Creates a client
+    const client = new vision.ImageAnnotatorClient();
 
-    // // Performs label detection on the image file
-    // const [result] = await client.textDetection(fileName)
-    // .then(() => {
-    //     console.log("google api call")
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    //     res.status(400).send({
-    //         Error : error
-    //     });
-    //     return;
-    // });
-   // const detections = result.textAnnotations;
+    // Performs label detection on the image file
+    const [result] = await client.textDetection(fileName)
+    
+   const detections = result.textAnnotations;
 
 
-    // console.log('Text:');
-    // console.log(detections[0].description)
-    // //console.log(detections.description)
-    // //detections.forEach(text => console.log(text));
-    //var description = detections[0].description;
+    console.log('Text:');
+    //console.log(detections[0].description)
+    //console.log(detections.description)
+    //detections.forEach(text => console.log(text));
+    var description = detections[0].description;
 
     var splitedText = description.split('\n')
 
