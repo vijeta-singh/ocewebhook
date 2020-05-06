@@ -1,11 +1,11 @@
 console.log("notify")
 var express = require('express');
 //var Blob = require('blob');
-const Blob = require('node-fetch');
+
 var router = express.Router();
 const axios = require('axios');
 const bodyParser = require('body-parser');
-const https = require('https');
+
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(bodyParser.raw());
@@ -18,7 +18,7 @@ var fileName="";
 /* GET home page. */
 
 router.post('/', (req, res) => {
-    console.log('before download content')
+    console.log(req.body);
     downloadContent(res)
     //res.sendStatus(200)
 });
@@ -75,24 +75,24 @@ async function downloadContent(res) {
 }
 async function quickstart(res, fileName) {
     console.log("calling google api")
-    // const description = 'WELCOME TO\n' +
-    //     'WORLD\n' +
-    //     'CONGRESS\n' +
-    //     'BOSTON\n' +
-    //     'July 28–31, 2019\n' +
-    //     'NCMA\n' +
-    //     'NATIONAL CONTRACT MANAGEMENT ASSOCIATION\n' +
-    //     'CONNECTING TO\n' +
-    //     "CREATE WHAT'S NEXT\n" +
-    //     'MAYOR MARTIN J. WALSH\n'
+    const description = 'WELCOME TO\n' +
+        'WORLD\n' +
+        'CONGRESS\n' +
+        'BOSTON\n' +
+        'July 28–31, 2019\n' +
+        'NCMA\n' +
+        'NATIONAL CONTRACT MANAGEMENT ASSOCIATION\n' +
+        'CONNECTING TO\n' +
+        "CREATE WHAT'S NEXT\n" +
+        'MAYOR MARTIN J. WALSH\n'
     // Imports the Google Cloud client library
-    const vision = require('@google-cloud/vision');
+    // const vision = require('@google-cloud/vision');
 
-    // Creates a client
-    const client = new vision.ImageAnnotatorClient();
+    // // Creates a client
+    // const client = new vision.ImageAnnotatorClient();
 
-    // Performs label detection on the image file
-    const [result] = await client.textDetection(fileName)
+    // // Performs label detection on the image file
+    // const [result] = await client.textDetection(fileName)
     // .then(() => {
     //     console.log("google api call")
     // })
@@ -103,14 +103,14 @@ async function quickstart(res, fileName) {
     //     });
     //     return;
     // });
-    const detections = result.textAnnotations;
+   // const detections = result.textAnnotations;
 
 
     // console.log('Text:');
     // console.log(detections[0].description)
     // //console.log(detections.description)
     // //detections.forEach(text => console.log(text));
-    var description = detections[0].description;
+    //var description = detections[0].description;
 
     var splitedText = description.split('\n')
 
