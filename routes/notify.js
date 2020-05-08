@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
     res.sendStatus(200)
 });
 function getContentDetails(ContentItemId) {
-    var contentApiUrl = ApiBaseUrl + 'assets/' + ContentId + '/versions';
+    var contentApiUrl = ApiBaseUrl + 'items/' + ContentItemId + '/versions';
     var header = {
         headers: {
             'Authorization': `Bearer ${token}`,
