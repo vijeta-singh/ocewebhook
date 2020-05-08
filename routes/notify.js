@@ -47,7 +47,7 @@ function getContentDetails(ContentItemId) {
         },
         responseType: 'application/json'
     }
-     axios.get(imageApiUrl, header, { responseType: 'stream' })
+     axios.get(contentApiUrl, header, { responseType: 'stream' })
         .then(response => {
             console.log(response.header);
             console.log(response.data);
