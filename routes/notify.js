@@ -1,4 +1,4 @@
-console.log("notify")
+
 var express = require('express');
 //var Blob = require('blob');
 
@@ -12,7 +12,7 @@ router.use(bodyParser.raw());
 const ApiBaseUrl = 'https://workshop4-oce0002.cec.ocp.oraclecloud.com/content/management/api/v1.1/';
 const token = 'eyJ4NXQjUzI1NiI6IlVUdWFCZmRaVmppVHNFNDFubkJuN0YwdVZyWVV2Q3NPbjJCd2JxT0NzWE0iLCJ4NXQiOiJqX0E2bVpiRzNLMmNhb1ZtVWM5RlJnei1HX3MiLCJraWQiOiJTSUdOSU5HX0tFWSIsImFsZyI6IlJTMjU2In0.eyJ1c2VyX3R6IjoiQW1lcmljYVwvQ2hpY2FnbyIsInN1YiI6InZpbmF5Lngua3VtYXJAb3JhY2xlLmNvbSIsInVzZXJfbG9jYWxlIjoiZW4iLCJpZHBfbmFtZSI6ImxvY2FsSURQIiwidXNlci50ZW5hbnQubmFtZSI6ImlkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQiLCJpZHBfZ3VpZCI6ImxvY2FsSURQIiwiYW1yIjpbIlVTRVJOQU1FX1BBU1NXT1JEIl0sImlzcyI6Imh0dHBzOlwvXC9pZGVudGl0eS5vcmFjbGVjbG91ZC5jb21cLyIsInVzZXJfdGVuYW50bmFtZSI6ImlkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQiLCJjbGllbnRfaWQiOiJFNTc5NTVCRTc4RjU0NDMwOUZBQjVFNERBMEJBQ0UzQV9BUFBJRCIsInN1Yl90eXBlIjoidXNlciIsInNjb3BlIjoib2ZmbGluZV9hY2Nlc3MgdXJuOm9wYzpjZWM6YWxsIiwiY2xpZW50X3RlbmFudG5hbWUiOiJpZGNzLWE5ZTBmMTE5ZTNkMDRlZWZhZDgyODdiNTg0YjEwMzU0IiwidXNlcl9sYW5nIjoiZW4iLCJleHAiOjE1ODg5MTkxNDQsImlhdCI6MTU4ODMxNDM0NCwiY2xpZW50X2d1aWQiOiJhNzNjODlkYjlmZjE0ZGY4YWM5M2RjZGY0MjkyNGU3ZiIsImNsaWVudF9uYW1lIjoiQ0VDU0FVVE9fd29ya3Nob3A0Q0VDU0FVVE8iLCJpZHBfdHlwZSI6IkxPQ0FMIiwidGVuYW50IjoiaWRjcy1hOWUwZjExOWUzZDA0ZWVmYWQ4Mjg3YjU4NGIxMDM1NCIsImp0aSI6IjI0MmE4ZTM2LTk5M2QtNDI0OC04NWEyLTdkYzI4YmUzOTMxZCIsInVzZXJfZGlzcGxheW5hbWUiOiJWaW5heSBLdW1hciIsInN1Yl9tYXBwaW5nYXR0ciI6InVzZXJOYW1lIiwicHJpbVRlbmFudCI6dHJ1ZSwidG9rX3R5cGUiOiJBVCIsImNhX2d1aWQiOiJjYWNjdC03MTQzMDU3YzYyZDc0YWUxOTk1OWM5YzdhMjZjOTRhNCIsImF1ZCI6WyJodHRwczpcL1wvRTU3OTU1QkU3OEY1NDQzMDlGQUI1RTREQTBCQUNFM0EuY2VjLm9jcC5vcmFjbGVjbG91ZC5jb206NDQzXC9kb2N1bWVudHNcL2ludGVncmF0aW9uXC9zb2NpYWwiLCJ1cm46b3BjOmxiYWFzOmxvZ2ljYWxndWlkPUU1Nzk1NUJFNzhGNTQ0MzA5RkFCNUU0REEwQkFDRTNBIiwiaHR0cHM6XC9cL0U1Nzk1NUJFNzhGNTQ0MzA5RkFCNUU0REEwQkFDRTNBLmNlYy5vY3Aub3JhY2xlY2xvdWQuY29tOjQ0M1wvb3NuXC9zb2NpYWxcL2FwaSIsImh0dHBzOlwvXC9FNTc5NTVCRTc4RjU0NDMwOUZBQjVFNERBMEJBQ0UzQS5jZWMub2NwLm9yYWNsZWNsb3VkLmNvbTo0NDNcLyJdLCJ1c2VyX2lkIjoiZWM1ODA1ODgxZWQxNDdlODkyOTEwOWMyYzZlNmMxMmYiLCJ0ZW5hbnRfaXNzIjoiaHR0cHM6XC9cL2lkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQuaWRlbnRpdHkub3JhY2xlY2xvdWQuY29tIn0.ldgP7Pa5qF_EVGeIx7_75x1WJ5JhwJK_aiVyZhIVXaW1tIg6YA9dxlmUXCqfI2KB8cnAdFNVVMv13ILhpEd97a2se_8O5VlJE7jmKbrn1fiKz2t_bDClG8d0GAU59IS4ov30v0b6MSrr1cCJ3tpkMf7ZIdym1yeStjCInCGXLmeIiUeyGU1KxrF3AA-dEYeIkYamUy-GJfHZygBGM-W3tJEwJpLiyIlHzrnkZ1TN7G4lCiEsJUlcV8O5tAQg1YkCUHO1JRXELsXsHNNl6HrhfQknMJRamlBNjnCbqxVQh5ojdYRdr1cyfIV5ARi4jA7W-nSAhxJ3v8gVZecRrE6ODA';
 const Fs = require('fs')
-var ContentId = 'CONT75630312A09042808A1A6C5EE1C41780';
+var ContentId = '';
 var fileName="";
 const repositoryId = 'B0B79C1208024A889D7A98969721A0AD';
 
@@ -22,6 +22,9 @@ router.post('/', (req, res) => {
     if(req.body.event.name === 'DIGITALASSET_CREATED' && repositoryId === req.body.entity.repositoryId) {
         ContentId = req.body.entity.id;
         downloadContent(res)
+    } else if(req.body.event.name === 'CONTENTITEM_CREATED' && repositoryId === req.body.entity.repositoryId){
+        var ContentItemId = req.body.entity.id;
+        getContentDetails(ContentItemId);
     } else {
         res.sendStatus(200)
     }
@@ -34,9 +37,34 @@ router.get('/', (req, res) => {
     //downloadContent(res)
     res.sendStatus(200)
 });
+function getContentDetails(ContentItemId) {
+    var contentApiUrl = ApiBaseUrl + 'assets/' + ContentId + '/versions';
+    var header = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+
+        },
+        responseType: 'application/json'
+    }
+    await axios.get(imageApiUrl, header, { responseType: 'stream' })
+        .then(response => {
+            console.log(response.header);
+            console.log(response.data);
+            res.sendStatus(200)
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(400).send({
+                Error: error
+            });
+            return;
+        });
+    
+}
 
 async function downloadContent(res) {
-    console.log('inside download content')
+    
     var imageApiUrl = ApiBaseUrl + 'assets/' + ContentId + '/native';
     var header = {
         headers: {
