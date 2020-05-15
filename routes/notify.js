@@ -10,11 +10,12 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 router.use(bodyParser.raw());
 const ApiBaseUrl = 'https://workshop4-oce0002.cec.ocp.oraclecloud.com/content/management/api/v1.1/';
-const token = 'eyJ4NXQjUzI1NiI6IlVUdWFCZmRaVmppVHNFNDFubkJuN0YwdVZyWVV2Q3NPbjJCd2JxT0NzWE0iLCJ4NXQiOiJqX0E2bVpiRzNLMmNhb1ZtVWM5RlJnei1HX3MiLCJraWQiOiJTSUdOSU5HX0tFWSIsImFsZyI6IlJTMjU2In0.eyJ1c2VyX3R6IjoiQW1lcmljYVwvQ2hpY2FnbyIsInN1YiI6InZpbmF5Lngua3VtYXJAb3JhY2xlLmNvbSIsInVzZXJfbG9jYWxlIjoiZW4iLCJpZHBfbmFtZSI6ImxvY2FsSURQIiwidXNlci50ZW5hbnQubmFtZSI6ImlkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQiLCJpZHBfZ3VpZCI6ImxvY2FsSURQIiwiYW1yIjpbIlVTRVJOQU1FX1BBU1NXT1JEIl0sImlzcyI6Imh0dHBzOlwvXC9pZGVudGl0eS5vcmFjbGVjbG91ZC5jb21cLyIsInVzZXJfdGVuYW50bmFtZSI6ImlkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQiLCJjbGllbnRfaWQiOiJFNTc5NTVCRTc4RjU0NDMwOUZBQjVFNERBMEJBQ0UzQV9BUFBJRCIsInN1Yl90eXBlIjoidXNlciIsInNjb3BlIjoib2ZmbGluZV9hY2Nlc3MgdXJuOm9wYzpjZWM6YWxsIiwiY2xpZW50X3RlbmFudG5hbWUiOiJpZGNzLWE5ZTBmMTE5ZTNkMDRlZWZhZDgyODdiNTg0YjEwMzU0IiwidXNlcl9sYW5nIjoiZW4iLCJleHAiOjE1ODk1Mjg4OTAsImlhdCI6MTU4ODkyNDA5MCwiY2xpZW50X2d1aWQiOiJhNzNjODlkYjlmZjE0ZGY4YWM5M2RjZGY0MjkyNGU3ZiIsImNsaWVudF9uYW1lIjoiQ0VDU0FVVE9fd29ya3Nob3A0Q0VDU0FVVE8iLCJpZHBfdHlwZSI6IkxPQ0FMIiwidGVuYW50IjoiaWRjcy1hOWUwZjExOWUzZDA0ZWVmYWQ4Mjg3YjU4NGIxMDM1NCIsImp0aSI6IjYwMDUzYmUwLTk2MWUtNDMwMC05MmMzLTZmNmU1NzcyOTg2NiIsInVzZXJfZGlzcGxheW5hbWUiOiJWaW5heSBLdW1hciIsInN1Yl9tYXBwaW5nYXR0ciI6InVzZXJOYW1lIiwicHJpbVRlbmFudCI6dHJ1ZSwidG9rX3R5cGUiOiJBVCIsImNhX2d1aWQiOiJjYWNjdC03MTQzMDU3YzYyZDc0YWUxOTk1OWM5YzdhMjZjOTRhNCIsImF1ZCI6WyJodHRwczpcL1wvRTU3OTU1QkU3OEY1NDQzMDlGQUI1RTREQTBCQUNFM0EuY2VjLm9jcC5vcmFjbGVjbG91ZC5jb206NDQzXC9kb2N1bWVudHNcL2ludGVncmF0aW9uXC9zb2NpYWwiLCJ1cm46b3BjOmxiYWFzOmxvZ2ljYWxndWlkPUU1Nzk1NUJFNzhGNTQ0MzA5RkFCNUU0REEwQkFDRTNBIiwiaHR0cHM6XC9cL0U1Nzk1NUJFNzhGNTQ0MzA5RkFCNUU0REEwQkFDRTNBLmNlYy5vY3Aub3JhY2xlY2xvdWQuY29tOjQ0M1wvb3NuXC9zb2NpYWxcL2FwaSIsImh0dHBzOlwvXC9FNTc5NTVCRTc4RjU0NDMwOUZBQjVFNERBMEJBQ0UzQS5jZWMub2NwLm9yYWNsZWNsb3VkLmNvbTo0NDNcLyJdLCJ1c2VyX2lkIjoiZWM1ODA1ODgxZWQxNDdlODkyOTEwOWMyYzZlNmMxMmYiLCJ0ZW5hbnRfaXNzIjoiaHR0cHM6XC9cL2lkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQuaWRlbnRpdHkub3JhY2xlY2xvdWQuY29tIn0.IAaurCXgDRcIBQzbg2WDkzV330LihjogAWicyiLqFH13P1fObAx2FFm_gCphnj9DrMzNTeUhB13O71wdZuFUeglckp7h9VtvgFUq8HfAzMDQxHUuw6VOnEcDcF0WK6VVZKEWJc-IvIeXNgHsZ17w4aDxN1KOUNbYoMfwmtD_OgYiw6nAxLouD0HXlUT547EdGOjLUwjZsgJILu8LxsXr7CrVwAUZV-gdyWCc9DeWwIA2LUYXO4ZBm_MqobtQ-V1KTwIuHmLTKDtLKKG26M_SrtL2oAM4Z_412UkV5520o12a3s3_WytsMcs0MRsFYbtSXcsbRj2320G2tNBojtgk-g';
+const token = 'eyJ4NXQjUzI1NiI6IlVUdWFCZmRaVmppVHNFNDFubkJuN0YwdVZyWVV2Q3NPbjJCd2JxT0NzWE0iLCJ4NXQiOiJqX0E2bVpiRzNLMmNhb1ZtVWM5RlJnei1HX3MiLCJraWQiOiJTSUdOSU5HX0tFWSIsImFsZyI6IlJTMjU2In0.eyJ1c2VyX3R6IjoiQW1lcmljYVwvQ2hpY2FnbyIsInN1YiI6InZpbmF5Lngua3VtYXJAb3JhY2xlLmNvbSIsInVzZXJfbG9jYWxlIjoiZW4iLCJpZHBfbmFtZSI6ImxvY2FsSURQIiwidXNlci50ZW5hbnQubmFtZSI6ImlkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQiLCJpZHBfZ3VpZCI6ImxvY2FsSURQIiwiYW1yIjpbIlVTRVJOQU1FX1BBU1NXT1JEIl0sImlzcyI6Imh0dHBzOlwvXC9pZGVudGl0eS5vcmFjbGVjbG91ZC5jb21cLyIsInVzZXJfdGVuYW50bmFtZSI6ImlkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQiLCJjbGllbnRfaWQiOiJFNTc5NTVCRTc4RjU0NDMwOUZBQjVFNERBMEJBQ0UzQV9BUFBJRCIsInN1Yl90eXBlIjoidXNlciIsInNjb3BlIjoib2ZmbGluZV9hY2Nlc3MgdXJuOm9wYzpjZWM6YWxsIiwiY2xpZW50X3RlbmFudG5hbWUiOiJpZGNzLWE5ZTBmMTE5ZTNkMDRlZWZhZDgyODdiNTg0YjEwMzU0IiwidXNlcl9sYW5nIjoiZW4iLCJleHAiOjE1OTAxNTQxMDYsImlhdCI6MTU4OTU0OTMwNiwiY2xpZW50X2d1aWQiOiJhNzNjODlkYjlmZjE0ZGY4YWM5M2RjZGY0MjkyNGU3ZiIsImNsaWVudF9uYW1lIjoiQ0VDU0FVVE9fd29ya3Nob3A0Q0VDU0FVVE8iLCJpZHBfdHlwZSI6IkxPQ0FMIiwidGVuYW50IjoiaWRjcy1hOWUwZjExOWUzZDA0ZWVmYWQ4Mjg3YjU4NGIxMDM1NCIsImp0aSI6IjNjMDYwMDRjLTE1YjMtNDRhZi1hMDg5LTVjYjlhNzRmNjkyMCIsInVzZXJfZGlzcGxheW5hbWUiOiJWaW5heSBLdW1hciIsInN1Yl9tYXBwaW5nYXR0ciI6InVzZXJOYW1lIiwicHJpbVRlbmFudCI6dHJ1ZSwidG9rX3R5cGUiOiJBVCIsImNhX2d1aWQiOiJjYWNjdC03MTQzMDU3YzYyZDc0YWUxOTk1OWM5YzdhMjZjOTRhNCIsImF1ZCI6WyJodHRwczpcL1wvRTU3OTU1QkU3OEY1NDQzMDlGQUI1RTREQTBCQUNFM0EuY2VjLm9jcC5vcmFjbGVjbG91ZC5jb206NDQzXC9kb2N1bWVudHNcL2ludGVncmF0aW9uXC9zb2NpYWwiLCJ1cm46b3BjOmxiYWFzOmxvZ2ljYWxndWlkPUU1Nzk1NUJFNzhGNTQ0MzA5RkFCNUU0REEwQkFDRTNBIiwiaHR0cHM6XC9cL0U1Nzk1NUJFNzhGNTQ0MzA5RkFCNUU0REEwQkFDRTNBLmNlYy5vY3Aub3JhY2xlY2xvdWQuY29tOjQ0M1wvb3NuXC9zb2NpYWxcL2FwaSIsImh0dHBzOlwvXC9FNTc5NTVCRTc4RjU0NDMwOUZBQjVFNERBMEJBQ0UzQS5jZWMub2NwLm9yYWNsZWNsb3VkLmNvbTo0NDNcLyJdLCJ1c2VyX2lkIjoiZWM1ODA1ODgxZWQxNDdlODkyOTEwOWMyYzZlNmMxMmYiLCJ0ZW5hbnRfaXNzIjoiaHR0cHM6XC9cL2lkY3MtYTllMGYxMTllM2QwNGVlZmFkODI4N2I1ODRiMTAzNTQuaWRlbnRpdHkub3JhY2xlY2xvdWQuY29tIn0.Pg_fH584DyclbcH--RZlBGz6AFzrhYoQKcqsygzGOolz8I8PrFKCHHOOUQWbZ09wtoPlzXP9RZyC4BRmViZ226GFkjAxof90ljdclB14vcBTCZOMZoMyca0idCJDFQu7OexJLyyQUkg-mN3GwjoBKMnWnZXHlC3P7lldwqByUgtiVHclUJvBgFStoNOSEWMwBj7JOe2-0Kj0edZSd0b1WwAzW12F3p-1hid0UZEwA6OTFflm_Rpk7c1iNVlmxncXe31Nz2wdHDgdgoQOjw7r4w5bfD0Ips5m9Wm_3Of633JyrC40nry8kKVT2qEsWB74He5gDk036EVtOWHBA_HY_g';
 const Fs = require('fs')
 var ContentId = '';
 var fileName="";
 const repositoryId = 'B0B79C1208024A889D7A98969721A0AD';
+var contentData ='';
 
 /* GET home page. */
 
@@ -49,9 +50,17 @@ function getContentDetails(ContentItemId) {
     }
      axios.get(contentApiUrl, header, { responseType: 'stream' })
         .then(response => {
-            console.log(response.header);
-            console.log(response.data);
-            res.sendStatus(200)
+            //console.log(response.header);
+            //console.log(response.data);
+            if(response.data.type === 'StaticSite') {
+                contenDdata = response.data
+                downloadThumbnail(contenDdata.fields.thumbnail.id);
+                await createSite(contentData);
+            } else {
+                res.sendStatus(200)
+                return;
+            }
+             
         })
         .catch(error => {
             console.log(error);
@@ -61,6 +70,31 @@ function getContentDetails(ContentItemId) {
             return;
         });
     
+}
+function downloadThumbnail(thumbnailId) {
+
+}
+async function createSite(contentData) {
+    siteName = contentData.name;
+    siteTemplate = 'StarterTemplate';
+    siteUrl = ApiBaseUrl + '/sites';
+    var payload = {
+        "name" : siteName,
+        "template" : siteTemplate,
+        "thumbnail" : {
+            "url" : "",
+            "imageType" : "thumbnail"
+        }
+    }
+    var header = {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+
+        }
+    }
+
 }
 
 async function downloadContent(res) {
