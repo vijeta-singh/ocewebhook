@@ -23,10 +23,12 @@ router.post('/', (req, res) => {
     if(req.body.event.name === 'DIGITALASSET_CREATED' && repositoryId === req.body.entity.repositoryId) {
         ContentId = req.body.entity.id;
         downloadContent(res)
-    } else if(req.body.event.name === 'CONTENTITEM_CREATED' && repositoryId === req.body.entity.repositoryId){
-        var ContentItemId = req.body.entity.id;
-        getContentDetails(ContentItemId);
-    } else {
+    }
+    // } else if(req.body.event.name === 'CONTENTITEM_CREATED' && repositoryId === req.body.entity.repositoryId){
+    //     var ContentItemId = req.body.entity.id;
+    //     getContentDetails(ContentItemId);
+    // } 
+    else {
         res.sendStatus(200)
     }
     
@@ -55,7 +57,7 @@ function getContentDetails(ContentItemId) {
             if(response.data.type === 'StaticSite') {
                 contenDdata = response.data
                 downloadThumbnail(contenDdata.fields.thumbnail.id);
-                await createSite(contentData);
+                 createSite(contentData);
             } else {
                 res.sendStatus(200)
                 return;
